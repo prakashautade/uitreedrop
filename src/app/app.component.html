@@ -1,0 +1,78 @@
+<div class="container h-100">
+  <div class="row h-100">
+    <div class="col m-2">
+      <div class="row h-100">
+        <div class="col-4">
+          <div class="row m-1 h-50">
+            <div class="col">
+              <div class="card border-primary h-100">
+                <div class="card-header bg-primary text-white">
+                  Grocery
+                </div>
+                <div class="card-body">
+                  <tree-root [nodes]="grocery" [options]="options"></tree-root>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row m-1 h-50">
+            <div class="col">
+              <div class="card border-secondary h-100">
+                <div class="card-header bg-secondary text-white">
+                  Fruits
+                </div>
+                <div class="card-body">
+                  <tree-root [nodes]="fruits" [options]="options">
+                    <ng-template #treeNodeTemplate let-node let-index="index">
+                      <div class="row">
+                        <div class="col">
+                          <div class="p-1 border border-dark">
+                            <span>{{ node.data.name }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </tree-root>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="row m-1 h-50">
+            <div class="col">
+              <div class="card border-primary h-100">
+                <div class="card-header bg-primary text-white">
+                  Grocery cart
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let grocery of groceryCart"> {{ grocery.name }} </li>
+                  </ul>
+                  <div class="h-100" (treeDrop)="onGroceryDrop($event)" [treeAllowDrop]="allowGroceryDrop.bind(this)">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row m-1 h-50">
+            <div class="col">
+              <div class="card border-secondary h-100">
+                <div class="card-header bg-secondary text-white">
+                  Fruits cart
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let fruit of fruitCart"> {{ fruit.name }} </li>
+                  </ul>
+                  <div class="h-100" (treeDrop)="onFruitDrop($event)" [treeAllowDrop]="allowFruitDrop.bind(this)">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
